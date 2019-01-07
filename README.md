@@ -11,8 +11,8 @@ This tool enables:
 ![alt text](https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/GETITLOGIN.PNG)
 
 # Dynamic User Page
-https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/OPeningPage.PNG
+![alt text](https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/OPeningPage.PNG)
 
-https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/Picture4.PNG
+![alt text](https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/Picture4.PNG)
 
-https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/Picture5.PNG
+![alt text](https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/Picture5.PNG)
