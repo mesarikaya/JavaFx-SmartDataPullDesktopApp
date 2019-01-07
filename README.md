@@ -6,3 +6,13 @@ This tool enables:
 - Dynamic in the sense that it understands the content of the relevant selected tables
 - Gives the user options to do advance filtering on the selected tables by date selection, text search and etc.
 - Enables data extraction to the local machine with a user friendly progress prompter
+
+# Login Page:
+https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/GETITLOGIN.PNG
+
+# Dynamic User Page
+https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/OPeningPage.PNG
+
+https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/Picture4.PNG
+
+https://github.com/mesarikaya/JavaFx-SmartDataPullDesktopApp/blob/master/GETIT%20SNAPSHOTS/Picture5.PNG
