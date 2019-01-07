@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tables>
+	<table>
+		<name>dev_internal_ctl_container.booking_data_kudu</name>
+		<synonym>Container Booking Data</synonym>
+		<databaseLocation>drona</databaseLocation>
+	</table>
+	<table>
+		<name>dev_internal_ctl_container.dashboard_data</name>
+		<synonym>Container Dashboard Data</synonym>
+		<databaseLocation>drona</databaseLocation>
+	</table>
+	<table>
+		<name>dev_internal_ctl_container.contract_data_kudu</name>
+		<synonym>Container Contract Data</synonym>
+		<databaseLocation>drona</databaseLocation>
+	</table>
+	<table>
+		<name>prd_external_ctl_umler.rr_railcar_detail_extract</name>
+		<synonym>Umler Railcar Detail data</synonym>
+		<databaseLocation>drona</databaseLocation>
+	</table>
+	<table>
+		<name>prd_internal_ctl_truck.sap_emea_geos</name>
+		<synonym>Emea SAP Geos data</synonym>
+		<databaseLocation>drona</databaseLocation>
+	</table>
+	<table>
+		<name>dev_internal_ctl_truck.f4211</name>
+		<synonym>EMEA AForce Data</synonym>
+		<databaseLocation>drona</databaseLocation>
+	</table>
+</tables>

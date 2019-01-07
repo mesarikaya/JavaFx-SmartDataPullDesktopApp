@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<GridPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mesarikaya.getItApp.Controllers.UserPageController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <GridPane fx:id="userPageView" alignment="CENTER" hgap="10" minHeight="350.0" minWidth="400.0" prefHeight="400.0" prefWidth="450.0" style="-fx-background-color: #2F3739;" vgap="10">
+          <columnConstraints>
+            <ColumnConstraints maxWidth="334.0" minWidth="200.0" prefWidth="289.0" />
+            <ColumnConstraints maxWidth="198.0" minWidth="6.0" prefWidth="101.0" />
+            <ColumnConstraints maxWidth="47.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" />
+            <RowConstraints />
+              <RowConstraints />
+              <RowConstraints />
+            <RowConstraints maxHeight="23.0" minHeight="23.0" prefHeight="30.0" />
+            <RowConstraints maxHeight="23.0" minHeight="23.0" prefHeight="23.0" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="98.0" minHeight="25.0" prefHeight="25.0" />
+            <RowConstraints maxHeight="98.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+          </rowConstraints>
+          <children>
+
+              <HBox alignment="CENTER" maxHeight="25.0" minHeight="25.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" GridPane.columnSpan="4" GridPane.rowIndex="0">
+                  <Label alignment="TOP_LEFT" nodeOrientation="LEFT_TO_RIGHT" text="GetIT" textAlignment="LEFT" textFill="#b8a76a" textOverrun="CLIP">
+                      <font>
+                          <Font name="Jokerman" size="20.0" />
+                      </font>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <VBox alignment="BASELINE_RIGHT">
+                      <ToolBar maxHeight="25.0" minHeight="25.0" prefHeight="25.0" style="-fx-background-color: transparent;" GridPane.columnSpan="4" GridPane.valignment="TOP">
+                       <HBox prefHeight="15">
+                               <Button fx:id="helpButton" alignment="CENTER" mnemonicParsing="false" onAction="#onHelpButtonClick" prefHeight="32.0" prefWidth="100.0" style="-fx-background-color: #B6D6DC;" text="Help" textFill="#3c6548" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                   <font>
+                                       <Font name="Tahoma Bold" size="12.0" />
+                                   </font>
+                               </Button>
+                        <opaqueInsets>
+                           <Insets />
+                        </opaqueInsets>
+                       </HBox>
+                          <Button fx:id="closeButton" alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="45.0" onAction="#closeApp" onMouseClicked="#closeApp" prefHeight="45.0" prefWidth="23.0" style="-fx-background-color: transparent; -fx-font-weight: bold; -fx-font-size: 21;" text="X" textAlignment="CENTER">
+                              <textFill>
+                                  <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+                                      <stops>
+                                          <Stop color="#fffafa" />
+                                          <Stop color="WHITE" offset="1.0" />
+                                      </stops>
+                                  </RadialGradient>
+                              </textFill>
+                          </Button>
+                      </ToolBar>
+                  </VBox>
+              </HBox>
+
+              <HBox alignment="CENTER" GridPane.columnSpan="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                  <Label alignment="BASELINE_CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: transparent; -fx-color: green;" text="Signed in!" textFill="#b334c7">
+                      <font>
+                          <Font name="Tahoma Bold" size="18.0" />
+                      </font>
+                  </Label>
+              </HBox>
+
+              <VBox fx:id="vBox1" prefHeight="25.0" prefWidth="400.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                  <Label prefHeight="23.0" prefWidth="204.0" text="Select Table" textFill="#23d619" GridPane.columnIndex="0">
+                      <font>
+                          <Font name="Tahoma" size="18.0" />
+                      </font>
+                      <GridPane.margin>
+                          <Insets />
+                      </GridPane.margin>
+                      <opaqueInsets>
+                          <Insets bottom="10.0" />
+                      </opaqueInsets>
+                  </Label>
+                  <ComboBox fx:id="tableList" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 8;" visibleRowCount="3" GridPane.columnIndex="0">
+                  <VBox.margin>
+                     <Insets top="5.0" />
+                  </VBox.margin>
+               </ComboBox>
+              </VBox>
+      
+      
+              <VBox fx:id="vBox" prefHeight="50.0" prefWidth="100.0" GridPane.rowIndex="7">
+                  <Label prefHeight="23.0" prefWidth="204.0" text="Select Required Columns" textFill="#23d619">
+                      <font>
+                          <Font name="Tahoma" size="18.0" />
+                      </font>
+                      <GridPane.margin>
+                          <Insets />
+                      </GridPane.margin>
+                  </Label>
+                  <HBox prefHeight="39.0" prefWidth="188.0">
+                      <CheckBox fx:id="selectAllCheckBox" prefHeight="15.0" style="-fx-background-radius: 8;" text="Select All" textFill="#d4bc19">
+                         <HBox.margin>
+                            <Insets right="5.0" top="5.0" />
+                         </HBox.margin>
+                      </CheckBox>
+                      <CheckComboBox fx:id="checkComboBox" prefHeight="25.0" prefWidth="88.0" style="-fx-background-radius: 15;" />
+                  </HBox>
+      
+              </VBox>
+      
+      
+              <VBox fx:id="vBoxFilter" prefHeight="25" prefWidth="100.0" GridPane.columnSpan="2" GridPane.rowIndex="10">
+                  <Label prefHeight="23.0" prefWidth="204.0" text="Specify Filter" textFill="#23d619">
+                      <font>
+                          <Font name="Tahoma" size="18.0" />
+                      </font>
+                      <GridPane.margin>
+                          <Insets />
+                      </GridPane.margin>
+                  </Label>
+                  <VBox>
+                      <ComboBox fx:id="filterColumn" prefHeight="25.0" prefWidth="138.0" style="-fx-background-radius: 8;" value="Column" visibleRowCount="3" GridPane.columnIndex="0">
+                          <opaqueInsets>
+                             <Insets right="10.0" />
+                          </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="5.0" />
+                     </VBox.margin>
+                      </ComboBox>
+                      <ComboBox fx:id="filterType" prefHeight="25.0" prefWidth="138.0" style="-fx-background-radius: 8;" value="Data Type" visibleRowCount="3" GridPane.columnIndex="0">
+                          <opaqueInsets>
+                              <Insets right="10.0" />
+                          </opaqueInsets>
+                      </ComboBox>
+      
+                      <HBox fx:id="filterConditionsHBOX" />
+      
+                  </VBox>
+              </VBox>
+      
+              <Button fx:id="exportDataButton" alignment="CENTER" mnemonicParsing="false" onAction="#onExportDataClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-radius: 15; -fx-background-color: #B6D6DC;" text="Export" textFill="#3c6548" GridPane.columnIndex="1" GridPane.rowIndex="10" GridPane.valignment="BOTTOM">
+                  <font>
+                      <Font name="Tahoma Bold" size="16.0" />
+                  </font>
+              </Button>
+      
+          </children>
+          <padding>
+              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+          </padding>
+      </GridPane>
+   </children>
+   <opaqueInsets>
+      <Insets top="2.0" />
+   </opaqueInsets>
+</GridPane>
