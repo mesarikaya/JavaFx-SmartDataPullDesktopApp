@@ -4,6 +4,8 @@ import com.mesarikaya.getItApp.DataModel.Table;
 import com.mesarikaya.getItApp.DataModel.TableData;
 import com.mesarikaya.getItApp.Services.DataService;
 import com.mesarikaya.getItApp.Services.DataServiceImpl;
+import com.mesarikaya.getItApp.Services.ScreenService;
+import com.mesarikaya.getItApp.Services.ScreenServiceImpl;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,26 +32,18 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
 
+
 import java.io.File;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserPageController {
 
-    private Scene firstScene;
-
-    // Get Data Service
-    private DataService dataService;
-
-    // Set the connected driver connection
-    private Connection conn;
-
-    // Table List
-    private TableData tableData;
 
     @FXML
     private ComboBox<String> tableList;
@@ -58,10 +53,6 @@ public class UserPageController {
 
     @FXML
     private GridPane userPageView;
-
-    private HashMap<String,String> synonymNameMatch = new HashMap<>();
-
-    private ObservableList<String> tableColumns;
 
     @FXML
     private CheckComboBox<String> checkComboBox;
@@ -84,10 +75,29 @@ public class UserPageController {
     @FXML
     private Button closeButton;
 
+    private Scene firstScene;
+
+    // Get Data Service
+    private DataService dataService;
+
+    // Get screen service
+    private ScreenService screenService;
+
+    // Set the connected driver connection
+    private Connection conn;
+
+    // Table List
+    private TableData tableData;
+
+    private HashMap<String,String> synonymNameMatch = new HashMap<>();
+
+    private ObservableList<String> tableColumns;
+
     private Task copyWorker;
 
     // Create a VBox for further use after filter type selections
     private final VBox filterColumnVBox = new VBox();
+
     // Create an HBox to put the new search condition parameters
     private final HBox searchConditionHBox = new HBox();
 
@@ -95,10 +105,30 @@ public class UserPageController {
     private String filterParameter1;
     private String filterParameter2;
 
+    // Set screen draggable attribute
+    private boolean isScreenDraggable;
+
+    // Primary stage
+    private Stage primaryStage;
+
+    public UserPageController(){
+        // Inject Data Service
+        dataService = new DataServiceImpl();
+        this.setDataService(dataService);
+
+        // Inject Screen Service
+        screenService = new ScreenServiceImpl();
+        this.setScreenService(screenService);
+    }
+
     // initialize the User page
-    public void initialize(){
+    public void initialize() throws Exception {
         // Set default Tables for the table selection filter
-        setTableData();
+        try{
+            setTableData();
+        }catch(Exception exc){
+            throw new Exception("Error in setting available tables: " + exc.getMessage());
+        }
 
         // Set the Combo box content
         setComboBoxContent();
@@ -179,6 +209,16 @@ public class UserPageController {
         return tableData;
     }
 
+    // This sets the available table names for the further use in the combo box
+    public void setTableData() throws Exception {
+
+        try {
+            this.tableData = dataService.setAvailableTables();
+        }catch(Exception exc){
+            throw new Exception("Error in setting available tables: " + exc.getMessage());
+        }
+    }
+
     public Connection getConn() {
         return conn;
     }
@@ -195,14 +235,31 @@ public class UserPageController {
         this.synonymNameMatch = synonymNameMatch;
     }
 
-    // This sets the available table names for the further use in the combo box
-    public void setTableData() {
-        if(this.dataService==null){
-            dataService = new DataServiceImpl();
-            this.setDataService(dataService);
-        }
+    public boolean isScreenDraggable() {
+        return isScreenDraggable;
+    }
 
-        this.tableData = dataService.setAvailableTables();
+    public void setScreenDraggable(boolean screenDraggable) {
+        isScreenDraggable = screenDraggable;
+
+        // If true, set screen to draggable
+        if (isScreenDraggable) screenService.enableScreenDragging(userPageView, this.getPrimaryStage());
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    public ScreenService getScreenService() {
+        return screenService;
+    }
+
+    public void setScreenService(ScreenService screenService) {
+        this.screenService = screenService;
     }
 
     // Set the Table selection combo box
@@ -286,6 +343,8 @@ public class UserPageController {
                     selectAllCheckBox.setAllowIndeterminate(true);
                     selectAllCheckBox.setIndeterminate(true);
                 }
+                // System.out.println("AFTER State of the checkbox is: " + selectAllCheckBox.isSelected() + " Indeterminate:"+ selectAllCheckBox.isIndeterminate());
+                // System.out.println("IS allowed? " + selectAllCheckBox.isAllowIndeterminate());
             }
         });
 
@@ -354,6 +413,11 @@ public class UserPageController {
         endDatePicker.setPrefHeight(25.0);
         endDatePicker.setPrefWidth(100);
 
+        // Create a Combo Box to select date format picker
+                /*ComboBox<String> dateFormatTypeComboBox = new ComboBox<>();
+                ObservableList<String> dateFormatTypes = FXCollections.observableArrayList(Arrays.asList(new String[]{"dd/MM/yyyy", "MM/dd/yyyy", "dd-MM-yyyy", "MM-dd-yyyy" }));
+                dateFormatTypeComboBox.setItems(dateFormatTypes);*/
+
         // Add event Listener to the Format Type Selection
         filterType.getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<String>() {
@@ -367,6 +431,9 @@ public class UserPageController {
                         endDatePicker.setValue( endDatePicker.getValue());
                     }
                 });
+
+        // Set the default date format type
+        // dateFormatTypeComboBox.setValue("dd/MM/yyyy");
 
         // Add all to the top level HBox
         searchConditionHBox.getChildren().addAll(dateConditionHBox);
@@ -559,6 +626,8 @@ public class UserPageController {
             }else{
                 System.out.println("Chooser was cancelled");
             }
+
+
         }
 
     }
@@ -658,6 +727,7 @@ public class UserPageController {
             @Override
             public void handle(ActionEvent actionEvent) {
                 Platform.exit();
+                System.exit(0);
             }
         });
     }
