@@ -31,8 +31,6 @@ import javafx.scene.text.Font;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckComboBox;
-
-
 import java.io.File;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
